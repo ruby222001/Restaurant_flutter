@@ -3,6 +3,7 @@ import 'package:fluttered/components/button.dart';
 import 'package:fluttered/models/food.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../components/food_title.dart';
 import '../theme/colors.dart';
 
 class MenuPage extends StatefulWidget {
@@ -26,6 +27,13 @@ class _MenuPageState extends State<MenuPage> {
       name: "pizza",
       price: "350",
       imagePath: "lib/images/pizza.png",
+      rating: "4.3",
+    ),
+    //sandwich
+    Food(
+      name: "sandwich",
+      price: "350",
+      imagePath: "lib/images/sandwich.png",
       rating: "4.3",
     ),
   ];
@@ -104,9 +112,11 @@ class _MenuPageState extends State<MenuPage> {
                   borderSide: BorderSide(color: Colors.white),
                   borderRadius: BorderRadius.circular(20),
                 ),
+                hintText: "Search Bar",
               ),
             ),
           ),
+
           const SizedBox(height: 25),
           //menu list
           Padding(
@@ -121,8 +131,69 @@ class _MenuPageState extends State<MenuPage> {
             ),
           ),
           const SizedBox(height: 10),
-
+          Expanded(
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: foodMenu.length,
+              itemBuilder: (context, index) => FoodTile(
+                food: foodMenu[index],
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
           //popular food
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.grey[100],
+              borderRadius: BorderRadius.circular(20),
+            ),
+            margin: const EdgeInsets.only(left: 25, right: 25, bottom: 25),
+            padding: const EdgeInsets.all(20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                //image
+                Row(
+                  children: [
+                    Image.asset(
+                      'lib/images/burger.png',
+                      height: 60,
+                    ),
+                    const SizedBox(width: 25),
+                    //name and price
+
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        //name
+                        Text(
+                          "Burger",
+                          style: GoogleFonts.dmSerifDisplay(fontSize: 18),
+                        ),
+                        const SizedBox(height: 10),
+                        //price
+
+                        Text(
+                          '340',
+                          style: TextStyle(
+                            color: Colors.grey[700],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                //heart
+                const Icon(
+                  Icons.favorite_outline,
+                  color: Colors.grey,
+                  size: 28,
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
