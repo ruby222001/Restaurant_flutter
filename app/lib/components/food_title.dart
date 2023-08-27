@@ -6,14 +6,19 @@ import '../models/food.dart';
 
 class FoodTile extends StatelessWidget {
   final Food food;
+  final void Function()? onTap;
 
   const FoodTile({super.key,
   required this.food,
+  required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    
+    return GestureDetector(
+      onTap:onTap,
+      child: Container(
       decoration: BoxDecoration(color: Colors.grey[100],
       borderRadius: BorderRadius.circular(20),
       ),
@@ -25,7 +30,7 @@ class FoodTile extends StatelessWidget {
           //image
 
           Image.asset(food.imagePath,
-          height: 140,
+          height: 120,
           ),
 
           //text
@@ -55,6 +60,7 @@ class FoodTile extends StatelessWidget {
           )
         ],
       ),
+    ),
     );
   }
 }

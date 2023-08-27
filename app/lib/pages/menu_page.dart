@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../components/food_title.dart';
 import '../theme/colors.dart';
+import 'food_details.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
@@ -37,6 +38,17 @@ class _MenuPageState extends State<MenuPage> {
       rating: "4.3",
     ),
   ];
+  //navigate food item details
+  void navigateToFoodDetails(int index) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => FoodDetailsPage(
+            food: foodMenu[index],
+          ),
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -137,6 +149,7 @@ class _MenuPageState extends State<MenuPage> {
               itemCount: foodMenu.length,
               itemBuilder: (context, index) => FoodTile(
                 food: foodMenu[index],
+                onTap: () => navigateToFoodDetails(index),
               ),
             ),
           ),
