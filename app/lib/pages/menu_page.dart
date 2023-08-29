@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:fluttered/components/button.dart';
 import 'package:fluttered/models/food.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../components/food_title.dart';
+import '../models/shop.dart';
 import '../theme/colors.dart';
 import 'food_details.dart';
 
@@ -15,31 +17,10 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
-  //food menu
-  List foodMenu = [
-    Food(
-      name: "burger",
-      price: "350",
-      imagePath: "lib/images/burger.png",
-      rating: "4.3",
-    ),
-    //pizza
-    Food(
-      name: "pizza",
-      price: "350",
-      imagePath: "lib/images/pizza.png",
-      rating: "4.3",
-    ),
-    //sandwich
-    Food(
-      name: "sandwich",
-      price: "350",
-      imagePath: "lib/images/sandwich.png",
-      rating: "4.3",
-    ),
-  ];
   //navigate food item details
   void navigateToFoodDetails(int index) {
+    final shop = context.read<Shop>();
+    final foodMenu = shop.foodMenu;
     Navigator.push(
         context,
         MaterialPageRoute(
@@ -50,7 +31,11 @@ class _MenuPageState extends State<MenuPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget
+   build(BuildContext context) {
+    final shop = context.read<Shop>();
+    final foodMenu = shop.foodMenu;
+
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 207, 207, 207),
       appBar: AppBar(

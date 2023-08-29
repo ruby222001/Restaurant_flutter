@@ -1,8 +1,11 @@
 import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:fluttered/components/button.dart';
+import 'package:fluttered/models/shop.dart';
 import 'package:fluttered/theme/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../models/food.dart';
 
@@ -21,15 +24,36 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
   //decrement quatity
   void decrementQuantity() {
     setState(() {
-      quantityCount--;
+      if (quantityCount > 0) {
+        quantityCount--;
+      }
     });
   }
 
   //increment quantity
   void incrementQuantity() {
     setState(() {
-      quantityCount++;
+      setState(() {
+        quantityCount++;
+      });
     });
+  }
+
+  void addToCart() {
+    //only if there is something
+    if (quantityCount > 0) {
+      //get access to shop
+      final shop = context.read<Shop>();
+//add to cart
+      shop.addToCart(widget.food, quantityCount);
+      //let the user know it was successful
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          content: Text("Succesfully added to cart"),
+        ),
+      );
+    }
   }
 
   @override
@@ -141,26 +165,20 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                       ),
 //quantity count
 
-
-SizedBox(
-  width: 40,
-  child:   Center(
-    child: Text(quantityCount.toString(),
-    
-    style: TextStyle(
-    
-      color:
-    
-    Colors.white,
-    
-    fontWeight: FontWeight.bold,
-    
-    fontSize: 18,
-    
-    ),),
-  ),
-), 
-             //plus button
+                      SizedBox(
+                        width: 40,
+                        child: Center(
+                          child: Text(
+                            quantityCount.toString(),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                      ),
+                      //plus button
                       Container(
                         decoration: BoxDecoration(
                             color: secondarycolor, shape: BoxShape.circle),
@@ -173,7 +191,12 @@ SizedBox(
                         ),
                       ),
                     ],
-                  )
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  //add to cart
+                  MyButton(text: "Add To Cart", onTap: addToCart),
                 ],
               ),
             ],
