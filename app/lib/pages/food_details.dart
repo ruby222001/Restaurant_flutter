@@ -1,4 +1,3 @@
-import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:fluttered/components/button.dart';
@@ -49,8 +48,26 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
       //let the user know it was successful
       showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (context) => AlertDialog(
-          content: Text("Succesfully added to cart"),
+          backgroundColor: primarycolor,
+          content: const Text(
+            "Succesfully added to cart",
+            style: TextStyle(color: Colors.white),
+            textAlign: TextAlign.center,
+          ),
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.pop(context);
+              },
+               icon: const  Icon(Icons.done,
+                 color: Colors.white,
+                 ),
+           
+            )
+          ],
         ),
       );
     }

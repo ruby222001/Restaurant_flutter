@@ -31,8 +31,7 @@ class _MenuPageState extends State<MenuPage> {
   }
 
   @override
-  Widget
-   build(BuildContext context) {
+  Widget build(BuildContext context) {
     final shop = context.read<Shop>();
     final foodMenu = shop.foodMenu;
 
@@ -40,15 +39,22 @@ class _MenuPageState extends State<MenuPage> {
       backgroundColor: Color.fromARGB(255, 207, 207, 207),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+       foregroundColor: Colors.grey[800],
         elevation: 0,
         leading: Icon(
           Icons.menu,
-          color: Colors.grey[900],
         ),
         title: Text(
           "MOMO",
-          style: TextStyle(color: Colors.grey[900]),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/cartpage');
+            },
+            icon: const Icon(Icons.shopping_cart),
+          )
+        ],
       ),
 
       //body portion
