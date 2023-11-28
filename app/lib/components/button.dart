@@ -20,13 +20,13 @@ class MyButton extends StatelessWidget {
           color: secondarycolor,
           borderRadius: BorderRadius.circular(40),
         ),
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               text,
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
             ),
           ],
         ),

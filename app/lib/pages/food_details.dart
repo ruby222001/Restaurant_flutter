@@ -93,7 +93,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                   widget.food.imagePath,
                   height: 200,
                 ),
-                const SizedBox(height: 25),
+                const SizedBox(height: 5),
                 //rating
                 Row(
                   children: [
@@ -119,7 +119,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
 
                 Text(
                   widget.food.name,
-                  style: GoogleFonts.dmSerifDisplay(fontSize: 28),
+                  style: GoogleFonts.dmSerifDisplay(fontSize: 30),
                 ),
                 const SizedBox(height: 25),
                 //description
@@ -133,7 +133,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  "hsdscdfdfhdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+                  "Savor the juiciness of our perfectly seasoned, flame-grilled beef patty, ensuring each bite is a burst of savory goodness.",
                   style: TextStyle(
                     color: Colors.grey[600],
                     fontSize: 14,
@@ -157,8 +157,8 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
 //price
 
                   Text(
-                    "\$" + widget.food.price,
-                    style: TextStyle(
+                      widget.food.price,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
@@ -173,7 +173,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                         decoration: BoxDecoration(
                             color: secondarycolor, shape: BoxShape.circle),
                         child: IconButton(
-                          icon: Icon(
+                          icon:const Icon(
                             Icons.remove,
                             color: Colors.white,
                           ),
@@ -187,7 +187,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                         child: Center(
                           child: Text(
                             quantityCount.toString(),
-                            style: TextStyle(
+                            style:const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
@@ -200,7 +200,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                         decoration: BoxDecoration(
                             color: secondarycolor, shape: BoxShape.circle),
                         child: IconButton(
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.add,
                             color: Colors.white,
                           ),

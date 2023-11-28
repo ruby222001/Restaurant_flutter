@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fluttered/components/button.dart';
-import 'package:fluttered/models/food.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -36,22 +35,23 @@ class _MenuPageState extends State<MenuPage> {
     final foodMenu = shop.foodMenu;
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 207, 207, 207),
+      backgroundColor: const Color.fromARGB(255, 207, 207, 207),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
        foregroundColor: Colors.grey[800],
         elevation: 0,
-        leading: Icon(
+        leading: const Icon(
           Icons.menu,
         ),
-        title: Text(
-          "MOMO",
+        title: const Text(
+          "Restaurant",
         ),
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/cartpage');
-            },
+Navigator.pushNamed(context, '/cartpage'
+)     ;       },
+            
             icon: const Icon(Icons.shopping_cart),
           )
         ],
@@ -79,7 +79,7 @@ class _MenuPageState extends State<MenuPage> {
                       Text(
                         'Get 30% Promo',
                         style: GoogleFonts.dmSerifDisplay(
-                          fontSize: 25,
+                          fontSize: 20,
                           color: Colors.white,
                         ),
                       ),
@@ -96,7 +96,7 @@ class _MenuPageState extends State<MenuPage> {
 
                   Image.asset(
                     'lib/images/pizza.png',
-                    height: 100,
+                    height: 80,
                   )
                 ]),
           ),
@@ -108,11 +108,11 @@ class _MenuPageState extends State<MenuPage> {
             child: TextField(
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: const BorderSide(color: Colors.white),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: const BorderSide(color: Colors.white),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 hintText: "Search Bar",
@@ -180,7 +180,7 @@ class _MenuPageState extends State<MenuPage> {
                         //price
 
                         Text(
-                          '340',
+                          'RS.340',
                           style: TextStyle(
                             color: Colors.grey[700],
                           ),
@@ -202,4 +202,5 @@ class _MenuPageState extends State<MenuPage> {
       ),
     );
   }
+  
 }

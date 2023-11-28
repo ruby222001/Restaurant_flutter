@@ -23,20 +23,22 @@ class FoodTile extends StatelessWidget {
       borderRadius: BorderRadius.circular(20),
       ),
       margin:const EdgeInsets.only(left: 25.0),
-      padding: EdgeInsets.all(25),
+      padding:const  EdgeInsets.all(10),
       child:  Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //image
+const SizedBox(height: 25),
 
           Image.asset(food.imagePath,
-          height: 120,
+          height: 100,
           ),
-
+const SizedBox(height: 20),
           //text
           Text(food.name,
           style: GoogleFonts.dmSerifDisplay(fontSize: 20),
           ),
+const SizedBox(height: 20),
 
           //price+rating
           SizedBox(
@@ -47,12 +49,12 @@ class FoodTile extends StatelessWidget {
 
               //price
 
-              Text('\$' +food.price,style: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey[700]),),
+              Text(food.price,style: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey[700]),),
               //rating
               Row(
                 children: [
                   Icon(Icons.star, color: Colors.yellow[800],),
-                  Text(food.rating,style: TextStyle(color: Colors.grey),),
+                  Text(food.rating,style: const TextStyle(color: Colors.grey),),
                 ],
               ),
             ],

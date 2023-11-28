@@ -7,21 +7,21 @@ class Shop extends ChangeNotifier {
   final List<Food> _foodMenu = [
     Food(
       name: "burger",
-      price: "350",
+      price: " Rs.350",
       imagePath: "lib/images/burger.png",
       rating: "4.3",
     ),
     //pizza
     Food(
       name: "pizza",
-      price: "350",
+      price: "Rs.350",
       imagePath: "lib/images/pizza.png",
       rating: "4.3",
     ),
     //sandwich
     Food(
       name: "sandwich",
-      price: "350",
+      price: "RS.350",
       imagePath: "lib/images/sandwich.png",
       rating: "4.3",
     ),

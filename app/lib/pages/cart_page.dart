@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:fluttered/components/button.dart';
 import 'package:fluttered/theme/colors.dart';
+import 'package:khalti_flutter/khalti_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../models/food.dart';
 import '../models/shop.dart';
 
 class CartPage extends StatelessWidget {
-  const CartPage({super.key});
+  const CartPage({Key? key}) : super(key: key);
+
   void removeFromCart(Food food, BuildContext context) {
     final shop = context.read<Shop>();
     shop.removeFromCart(food);
@@ -36,7 +38,7 @@ class CartPage extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: secondarycolor,
                         borderRadius: BorderRadius.circular(8)),
-                    margin: EdgeInsets.only(left: 20, top: 20, right: 20),
+                    margin: const EdgeInsets.only(left: 20, top: 20, right: 20),
                     child: ListTile(
                       title: Text(
                         foodName,
@@ -63,11 +65,61 @@ class CartPage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(25.0),
-              child: MyButton(text: "Pay Now", onTap: () {}),
+              child: MyButton(
+                text: "Pay Now",
+                onTap: () {
+                  payWithKhaltiInApp(context); // Pass context here
+                },
+              ),
             )
           ],
         ),
       ),
     );
+  }
+
+void payWithKhaltiInApp(BuildContext context) {
+  void specificOnSuccess(dynamic success) {
+    if (success is PaymentSuccessModel) {
+      onSuccess(context, success);
+    }
+  }    KhaltiScope.of(context).pay(
+      config: PaymentConfig(
+        amount: 1000,
+        productIdentity: "Product id",
+        productName: "Product Name",
+      ),
+      preferences: [PaymentPreference.khalti],
+      onSuccess: specificOnSuccess,
+      onFailure: onFailure,
+      onCancel: onCancel,
+    );
+  }
+
+  void onSuccess(BuildContext context, success) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text("Payment successful"),
+          actions: [
+            SimpleDialogOption(
+              child: const Text("Ok"),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void onFailure(PaymentFailureModel failure) {
+    debugPrint(failure.toString());
+  }
+
+  void onCancel() {
+    debugPrint("cancel");
   }
 }
